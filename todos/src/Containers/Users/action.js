@@ -17,3 +17,60 @@ export function GetUsersFail(error) {
         payload:error
     }
 }
+
+// export function createUsersRequest(user) {
+//     return {
+//         type:types.CREATE_USERS_REQUEST,
+//         payload:user
+//     }
+// }
+// export function createUsersSuccess(response) {
+//     return {
+//         type:types.CREATE_USERS_SUCCESS,
+//         payload:response
+//     }
+// }
+// export function createUsersFail(error) {
+//     return {
+//         type:types.CREATE_USERS_FAIL,
+//         payload:error
+//     }
+// }
+
+// export function updateUsersRequest(userId) {
+//     return {
+//         type:types.UPDATE_USERS_REQUEST,
+//         payload:userId
+//     }
+// }
+// export function updateUsersSuccess(response) {
+//     return {
+//         type:types.UPDATE_USERS_SUCCESS,
+//         payload:response
+//     }
+// }
+// export function updateUsersFail(error) {
+//     return {
+//         type:types.UPDATE_USERS_FAIL,
+//         payload:error
+//     }
+// }
+
+// export function deleteUsersRequest(userId) {
+//     return {
+//         type:types.DELETE_USERS_REQUEST,
+//         payload:userId
+//     }
+// }
+// export function deleteUsersSuccess(response) {
+//     return {
+//         type:types.DELETE_USERS_SUCCESS,
+//         payload:response
+//     }
+// }
+// export function deleteUsersFail(error) {
+//     return {
+//         type:types.DELETE_USERS_FAIL,
+//         payload:error
+//     }
+// }

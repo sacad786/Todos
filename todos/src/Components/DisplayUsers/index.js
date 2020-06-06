@@ -11,14 +11,14 @@ import Paper from '@material-ui/core/Paper';
 export default function DisplayUsers(props) {
     const Users = props.Usersdata
     return (
-        <div>
+        <div style={{margin: '110px'}}>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Username</TableCell>
-                            <TableCell align="right">Firstname</TableCell>
-                            <TableCell align="right">Lastname</TableCell>
+                            <TableCell >Firstname</TableCell>
+                            <TableCell >Lastname</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -27,10 +27,10 @@ export default function DisplayUsers(props) {
                                 <TableCell component="th" scope="row">
                                     {user.user_name}
                                 </TableCell>
-                                <TableCell align="right">{user.first_name}</TableCell>
-                                <TableCell align="right">{user.last_name}</TableCell>
-                                {/* <TableCell align="right">{user.carbs}</TableCell> */}
-                                {/* <TableCell align="right">{user.protein}</TableCell> */}
+                                <TableCell >{user.first_name}</TableCell>
+                                <TableCell >{user.last_name}</TableCell>
+                                {/* <TableCell >{user.carbs}</TableCell> */}
+                                {/* <TableCell >{user.protein}</TableCell> */}
                             </TableRow>
                         ))}
                     </TableBody>
