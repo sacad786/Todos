@@ -7,13 +7,13 @@ const initialState = {
 }
 
 export default function usersReducer(state = initialState, action) {
-    switch (key) {
+    switch (action.type) {
         case types.GET_USERS_REQUEST:
             return {...state, loader: true, error: null};
         case types.GET_USERS_SUCCESS:
-            return {...state, loader: true, error: null};
+            return {...state, loader: true, user: action.payload};
         case types.GET_USERS_FAIL:
-            return {...state, loader: true, error: null};
+            return {...state, loader: true, error: action.payload};
     
         default:
             return state;
