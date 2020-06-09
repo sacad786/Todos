@@ -48,11 +48,11 @@ export function* updateUsersSaga(){
 export function* deleteUsersSaga(){
     for(;;){
         const userId = yield take(types.DELETE_USERS_REQUEST)
-        console.log(userId);
         
         try {
-           const response = yield call(deleteUsers,userId) 
+           const response = yield call(deleteUsers,userId.payload) 
            yield put(deleteUsersSuccess(response.data))
+           yield put(getUsersRequest())
         } catch (error) {
             yield put(deleteUsersFail(error))
         }

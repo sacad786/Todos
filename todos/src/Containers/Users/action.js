@@ -77,3 +77,9 @@ export function deleteUsersFail(error) {
         payload:error
     }
 }
+
+export function resetUserError() {
+    return {
+        type:types.RESET_USERS_ERROR
+    }
+}

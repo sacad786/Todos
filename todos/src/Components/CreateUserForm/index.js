@@ -27,6 +27,9 @@ export class CreateUserForm extends Component {
             return
         }
         this.props.dispatchUserRequest(createUsersRequest(user))
+        //  username =  "" 
+        //  firstname = ""
+        //  lastname = ""
     }
     render() {
         return (

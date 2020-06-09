@@ -5,8 +5,9 @@ const initialState = {
     loader: false,
     error: null,
     user: null,
-    deleteUser: null,
-
+    updateUser: null,
+    updateUserError:null,
+    deleteUser: null
 }
 
 export default function usersReducer(state = initialState, action) {
@@ -25,15 +26,22 @@ export default function usersReducer(state = initialState, action) {
         case types.CREATE_USERS_FAIL:
             return {...state, loader: false, error: action.payload};
 
-        // case types.DELETE_USERS_REQUEST:
-        //     return {...state, loader: true, error: null};
-        // case types.DELETE_USERS_SUCCESS:
-        //     return {...state, loader: false, deleteUser: action.payload};
-        // case types.DELETE_USERS_FAIL:
-        //     return {...state, loader: false, error: action.payload};
+        case types.UPDATE_USERS_REQUEST:
+            return {...state, loader: true, error: null};
+        case types.UPDATE_USERS_SUCCESS:
+            return {...state, loader: false, updateUser: action.payload};
+        case types.UPDATE_USERS_FAIL:
+            return {...state, loader: false, updateUserError: action.payload};
 
-        // case types.RESET_USERS_ERROR:
-        //     return {...state, loader: false, error: null, user:null, userId:null,  deleteUser:null}
+        case types.DELETE_USERS_REQUEST:
+            return {...state, loader: true, error: null};
+        case types.DELETE_USERS_SUCCESS:
+            return {...state, loader: false, deleteUser: action.payload};
+        case types.DELETE_USERS_FAIL:
+            return {...state, loader: false, error: action.payload};
+
+        case types.RESET_USERS_ERROR:
+            return {...state, loader: false, error: null, user:null, updateUser:null, updateUserError:null, userId:null,  deleteUser:null}
     
         default:
             return state;
