@@ -23,12 +23,16 @@ export class UpdateUserForm extends Component {
         id: this.props.user.id
         }
 
+        if (!firstname || !lastname) {
+            return
+        }
+
         this.props.dispatchUpdateUserRequest(updateUsersRequest(user))
     }
     render() {
         return (
             <div>
-                <form style={{ margin: "100px"}}>
+                <form align="center" style={{ margin: "5%"}}>
                     <TextField
                         id="outlined-basic"
                         name="firstname"

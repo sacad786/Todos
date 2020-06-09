@@ -5,8 +5,6 @@ export function getUsers() {
 }
 
 export function createUsers(user) {
-    console.log("user", user);
-    
     return Axios.post("http://localhost:8080/api/user/", user)
 }
 

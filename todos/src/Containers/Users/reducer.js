@@ -6,7 +6,6 @@ const initialState = {
     error: null,
     user: null,
     updateUser: null,
-    updateUserError:null,
     deleteUser: null
 }
 
@@ -31,7 +30,7 @@ export default function usersReducer(state = initialState, action) {
         case types.UPDATE_USERS_SUCCESS:
             return {...state, loader: false, updateUser: action.payload};
         case types.UPDATE_USERS_FAIL:
-            return {...state, loader: false, updateUserError: action.payload};
+            return {...state, loader: false, error: action.payload};
 
         case types.DELETE_USERS_REQUEST:
             return {...state, loader: true, error: null};
@@ -41,7 +40,7 @@ export default function usersReducer(state = initialState, action) {
             return {...state, loader: false, error: action.payload};
 
         case types.RESET_USERS_ERROR:
-            return {...state, loader: false, error: null, user:null, updateUser:null, updateUserError:null, userId:null,  deleteUser:null}
+            return {...state, loader: false, error: null, user:null, updateUser:null, userId:null,  deleteUser:null}
     
         default:
             return state;

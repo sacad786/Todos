@@ -6,10 +6,10 @@ import UpdateUserForm from '../../Components/UpdateUserForm'
 import { getUsersRequest, createUsersRequest, updateUsersRequest, deleteUsersRequest, resetUserError } from './action'
 import { Dialog, DialogActions, Button } from '@material-ui/core'
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { cancelBtnStyle, btnStyle} from '../../actionTypes'
+import { cancelBtnStyle, btnStyle } from '../../actionTypes'
 
 export class Users extends Component {
-    constructor(props) {
+    constructor() {
         super()
         this.state = {
             openDialog: false,
@@ -48,7 +48,7 @@ export class Users extends Component {
     resetApiErrors() {
         this.props.dispatch(resetUserError())
         this.setState({
-            deleteUserWarning:false
+            deleteUserWarning: false
         })
     }
 
@@ -64,11 +64,11 @@ export class Users extends Component {
     deleteUserRequest(userId) {
         this.props.dispatch(deleteUsersRequest(userId))
         this.setState({
-            deleteUserWarning:false
+            deleteUserWarning: false
         })
     }
 
-    deleteUserAlert(){
+    deleteUserAlert() {
         return <SweetAlert
             warning
             showCancel
@@ -91,21 +91,12 @@ export class Users extends Component {
     }
     userCreatedUnSuccessfullyAlert() {
         return <SweetAlert
-                danger
-                title={this.props.usersState.error}
-                onConfirm={this.resetApiErrors.bind(this)}
-                confirmBtnStyle={cancelBtnStyle}
-                confirmBtnText="try again!"
-              />
-    }
-    userCreatedUnSuccessfullyAlert() {
-        return <SweetAlert
-                danger
-                title={this.props.usersState.updateUserError}
-                onConfirm={this.resetApiErrors.bind(this)}
-                confirmBtnStyle={cancelBtnStyle}
-                confirmBtnText="try again!"
-              />
+            danger
+            title={"this.props.usersState.error"}
+            onConfirm={this.resetApiErrors.bind(this)}
+            confirmBtnStyle={cancelBtnStyle}
+            confirmBtnText="try again!"
+        />
     }
     userDeletedSuccessAlert() {
         return <SweetAlert
@@ -124,40 +115,37 @@ export class Users extends Component {
         ></SweetAlert>
     }
 
-render() {
-    const users = this.props.usersState.users || [];
+    render() {
+        const users = this.props.usersState.users || [];
 
-    return (
-        <div>
-            <Dialog fullWidth onClose={this.handleCloseDialog.bind(this)} open={this.state.openDialog}>
-                <UpdateUserForm
-                    user={this.state.updateUser}
-                    dispatchUpdateUserRequest={this.dispatchUpdateUserRequest.bind(this)}
+        return (
+            <div>
+                <Dialog fullWidth onClose={this.handleCloseDialog.bind(this)} open={this.state.openDialog}>
+                    <DialogActions>
+                        <Button onClick={this.handleCloseDialog.bind(this)}>x</Button>
+                    </DialogActions>
+                    <UpdateUserForm
+                        user={this.state.updateUser}
+                        dispatchUpdateUserRequest={this.dispatchUpdateUserRequest.bind(this)}
+                    />
+                </Dialog>
+
+                <CreateUserForm
+                    dispatchUserRequest={this.dispatchUserRequest.bind(this)}
                 />
-                <DialogActions>
-                    <Button onClick={this.handleCloseDialog.bind(this)}>x</Button>
-                </DialogActions>
-            </Dialog>
-
-            <CreateUserForm
-                dispatchUserRequest={this.dispatchUserRequest.bind(this)}
-            />
-            <DisplayUsers
-                Usersdata={users}
-                handleUpdateUser={this.handleUpdateUser.bind(this)}
-                handleDeleteUserWarning={this.handleDeleteUserWarning.bind(this)}
-            />
-            {this.state.deleteUserWarning ? this.deleteUserAlert() : ''}
-            {this.props.usersState.deleteUser ? this.userDeletedSuccessAlert() : ''}
-            {this.props.usersState.user ? this.userCreatedSuccessAlert() : ''}
-            {this.props.usersState.error ? this.userCreatedUnSuccessfullyAlert() : ''}
-            {this.props.usersState.updateUser ? this.userUpdatedSuccessAlert() : ''}
-            {this.props.usersState.updateUserError ? this.userUpdatedUnSuccessfullyAlert() : ''} 
-
-
-        </div>
-    )
-}
+                <DisplayUsers
+                    Usersdata={users}
+                    handleUpdateUser={this.handleUpdateUser.bind(this)}
+                    handleDeleteUserWarning={this.handleDeleteUserWarning.bind(this)}
+                />
+                {this.state.deleteUserWarning ? this.deleteUserAlert() : ''}
+                {this.props.usersState.deleteUser ? this.userDeletedSuccessAlert() : ''}
+                {this.props.usersState.user ? this.userCreatedSuccessAlert() : ''}
+                {this.props.usersState.error ? this.userCreatedUnSuccessfullyAlert() : ''}
+                {this.props.usersState.updateUser ? this.userUpdatedSuccessAlert() : ''}
+            </div>
+        )
+    }
 }
 
 export default connect(state => ({
