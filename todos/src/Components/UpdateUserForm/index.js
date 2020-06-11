@@ -6,8 +6,9 @@ export class UpdateUserForm extends Component {
     constructor(props) {
         super()
         this.state = {
-            firstname: '',
-            lastname: '',
+            firstname:null,
+            lastname:null,
+            showUpdateError: false
         }
     }
     handleTextChange(e) {
@@ -23,8 +24,10 @@ export class UpdateUserForm extends Component {
         id: this.props.user.id
         }
 
-        if (!firstname || !lastname) {
-            return
+        if (!firstname && !lastname) {
+            return this.setState({ 
+                showUpdateError: true
+            })
         }
 
         this.props.dispatchUpdateUserRequest(updateUsersRequest(user))
@@ -32,11 +35,12 @@ export class UpdateUserForm extends Component {
     render() {
         return (
             <div>
+                <p style={{color: 'red', textAlign: 'center' , display: (this.state.showUpdateError) ? 'block' : 'none'}}>User not updated</p>
                 <form align="center" style={{ margin: "5%"}}>
                     <TextField
                         id="outlined-basic"
                         name="firstname"
-                        value={this.state.firstname || this.props.user.first_name}
+                        value={this.state.firstname === null ? this.props.user.first_name : this.state.firstname}
                         onChange={this.handleTextChange.bind(this)}
                         label="Firstname"
                         variant="outlined"
@@ -45,7 +49,7 @@ export class UpdateUserForm extends Component {
                     <TextField
                         id="outlined-basic"
                         name="lastname"
-                        value={this.state.lastname || this.props.user.last_name}
+                        value={this.state.lastname === null ? this.props.user.last_name : this.state.lastname}
                         onChange={this.handleTextChange.bind(this)}
                         label="Lastname"
                         variant="outlined"

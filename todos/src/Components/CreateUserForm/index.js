@@ -16,6 +16,15 @@ export class CreateUserForm extends Component {
             [e.target.name]: e.target.value
         })
     }
+
+    clearForm(){
+        this.setState({
+            username:  "" ,
+            firstname: "" ,
+            lastname: ""
+        })
+    }
+
     handleFormChange(){
         const {username, firstname, lastname} = this.state
         const user = {
@@ -27,9 +36,7 @@ export class CreateUserForm extends Component {
             return
         }
         this.props.dispatchUserRequest(createUsersRequest(user))
-        //  username =  "" 
-        //  firstname = ""
-        //  lastname = ""
+        this.clearForm()
     }
     render() {
         return (

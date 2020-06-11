@@ -16,13 +16,4 @@ export const DELETE_USERS_FAIL = "delete-users-fail"
 
 export const RESET_USERS_ERROR = "resetUsersError"
 
-export const cancelBtnStyle = {
-    backgroundColor: "red", 
-    color: "white",
-    padding: "15px 40px 15px 40px"
-}
-export const btnStyle = {
-    backgroundColor: "green", 
-    color: "white",
-    padding: "15px 40px 15px 40px"
-}
+

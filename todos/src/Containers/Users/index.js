@@ -6,7 +6,7 @@ import UpdateUserForm from '../../Components/UpdateUserForm'
 import { getUsersRequest, createUsersRequest, updateUsersRequest, deleteUsersRequest, resetUserError } from './action'
 import { Dialog, DialogActions, Button } from '@material-ui/core'
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { cancelBtnStyle, btnStyle } from '../../actionTypes'
+import { DeleteBtnStyle, confirmBtnStyle, cancelBtnStyle } from '../../styles'
 
 export class Users extends Component {
     constructor() {
@@ -73,7 +73,8 @@ export class Users extends Component {
             warning
             showCancel
             confirmBtnText="Yes, delete it!"
-            confirmBtnStyle={cancelBtnStyle}
+            confirmBtnStyle={DeleteBtnStyle}
+            cancelBtnStyle={cancelBtnStyle}
             title="Are you sure?"
             onConfirm={this.deleteUserRequest.bind(this, this.state.deleteUserId)}
             onCancel={this.resetApiErrors.bind(this)}
@@ -86,15 +87,15 @@ export class Users extends Component {
             success
             title="user created"
             onConfirm={this.resetApiErrors.bind(this)}
-            confirmBtnStyle={btnStyle}
+            confirmBtnStyle={confirmBtnStyle}
         ></SweetAlert>
     }
     userCreatedUnSuccessfullyAlert() {
         return <SweetAlert
             danger
-            title={"this.props.usersState.error"}
+            title={this.props.usersState.error}
             onConfirm={this.resetApiErrors.bind(this)}
-            confirmBtnStyle={cancelBtnStyle}
+            confirmBtnStyle={DeleteBtnStyle}
             confirmBtnText="try again!"
         />
     }
@@ -103,7 +104,7 @@ export class Users extends Component {
             success
             title="user deleted successfully"
             onConfirm={this.resetApiErrors.bind(this)}
-            confirmBtnStyle={btnStyle}
+            confirmBtnStyle={confirmBtnStyle}
         ></SweetAlert>
     }
     userUpdatedSuccessAlert() {
@@ -111,7 +112,7 @@ export class Users extends Component {
             success
             title="user updated"
             onConfirm={this.resetApiErrors.bind(this)}
-            confirmBtnStyle={btnStyle}
+            confirmBtnStyle={confirmBtnStyle}
         ></SweetAlert>
     }
 

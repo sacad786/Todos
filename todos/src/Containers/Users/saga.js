@@ -26,7 +26,7 @@ export function* createUsersSaga(){
            yield put(createUsersSuccess(response.data))
            yield put(getUsersRequest())
         } catch (error) {
-            yield put(createUsersFail(error))
+            yield put(createUsersFail(error.response.data))
         }
     }
 }
